@@ -1,0 +1,41 @@
+.gutter-vertical {
+    position: relative;
+    background-color: var(--mantine-color-default-border);
+    /*border-radius: 4px 4px 0 0 ;*/
+    cursor: row-resize;
+    z-index: 10;
+}
+
+.cm-editor {
+    outline: none!important;
+    background-color: var(--mantine-color-body);
+}
+
+.wmde-markdown pre {
+    background-color: var(--mantine-color-body);
+    border: 1px solid var(--mantine-color-default-border);
+}
+
+.mantine-CodeHighlight-pre {
+    white-space: pre-wrap;
+}
+.mantine-CodeHighlight-root .mantine-ScrollArea-root{
+    height: 100%;
+}
+
+/* Add the following CSS code to make a button spin continuously */
+
+@keyframes spin {
+    from {transform:rotate(0deg);}
+    to {transform:rotate(-360deg);}
+}
+
+.spin-refresher {
+    animation: spin 2s linear infinite;
+}
+
+.mantine-code-highlight-line-number {
+    color: green;
+    font-size: 14px;
+    margin-right: 10px;
+}

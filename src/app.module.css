@@ -1,0 +1,30 @@
+.spitCustomStyle {
+    z-index: 10;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    padding-top: 10px;
+    /*padding: 10px 0;*/
+}
+
+.tabList {
+    &:before {
+        border: none !important;
+    }
+}
+
+.tabTabs {
+    &[data-active] {
+       border-color: var(--mantine-color-gray-light-hover);
+    }
+}
+
+
+.codeHighlight {
+    white-space: pre-wrap;
+    border: 1px solid var(--mantine-color-default-border);
+    border-radius: var(--mantine-radius-md);
+    height: 100%;
+    overflow: auto;
+    background-color: var(--mantine-color-body)!important;
+}
