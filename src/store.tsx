@@ -8,9 +8,9 @@ interface StoreValues {
     tags: ApiTags;
     selected: HttpRequest | null,
     endpoints: EndPints
-    server?: string;
+    server: Server | null;
     yamlUrl?: string;
-    servers: Server[];
+    servers: ServerObj
     bearerToken: string
 }
 
@@ -31,10 +31,10 @@ export const useStore = create<StoreInterface>()(
         selected: null,
         endpoints: {},
         bearerToken: '',
-        server: '',
+        server: null,
         yamlUrl: '',
         // yamlUrl: 'https://benefeed-be.azurewebsites.net/swagger-yaml',
-        servers: [],
+        servers: {},
         setStore: (v) => set(v),
         setSelectedBody: (v) => {
             const selected = get().selected!

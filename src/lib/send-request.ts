@@ -2,7 +2,7 @@ import {useStore} from "../store.tsx";
 
 const sendRequest = async () => {
     const selected =  useStore.getState().selected
-    const serverUrl =  useStore.getState().server
+    const server =  useStore.getState().server
     const bearerToken =  useStore.getState().bearerToken
 
     if (!selected) return;
@@ -30,7 +30,7 @@ const sendRequest = async () => {
 
         const response: FetchResponse = selected.response!
 
-        const res = await fetch(serverUrl + requestPath, {
+        const res = await fetch(server?.url + requestPath, {
 
             method: selected.method.toUpperCase(),
             headers,

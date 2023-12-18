@@ -14,6 +14,7 @@ const AppHeader = ({opened, toggle}: Props) => {
     const title = useStore(state => state.title)
     const loading = useStore(state => state.loading)
     const setStore = useStore(state => state.setStore)
+
     return (
         <Group px='20' h='100%' justify={'space-between'}>
             {/* left side*/}

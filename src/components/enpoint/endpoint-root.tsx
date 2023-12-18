@@ -22,7 +22,7 @@ import sendRequest from '../../lib/send-request.ts'
 
 const EndpointRoot = () => {
     const server = useStore(state => state.server)
-    const  selected = useStore(state => state.selected)
+    const selected = useStore(state => state.selected)
 
     if (!selected) return <div></div>
 
@@ -31,7 +31,7 @@ const EndpointRoot = () => {
             <Stack>
                 <Group py={5} px='lg' justify={'space-between'} bg='var(--mantine-color-gray-light-hover)'>
                     <Title order={4}>{selected.summary || selected.path?.split('/').pop()}</Title>
-                    <Text c='dimmed'>{`${server}`}</Text>
+                    <Text c='dimmed'>{`${server?.description+' - ' || ''}${server?.url || ''}`}</Text>
                 </Group>
                 <Group pt={5} px='md' gap={6}>
                     <Button
@@ -78,9 +78,9 @@ const EndpointRoot = () => {
                 <Stack h='100%' gap={0}>
                     <Group justify={'space-between'} pb={10} pt={5} px='md' bg='var(--mantine-color-gray-light-hover)'>
                         <Text>Response</Text>
-                        { selected.fetching? <Loader size='sm'/>: !!selected.response.status && (
+                        {selected.fetching ? <Loader size='sm'/> : !!selected.response.status && (
                             <Text c={selected.response.status.startsWith('2') ? 'green' : 'red'}>
-                               {selected.response.status}
+                                {selected.response.status}
                             </Text>
                         )}
                     </Group>

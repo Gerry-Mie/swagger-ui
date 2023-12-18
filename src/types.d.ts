@@ -1,6 +1,7 @@
 type ApiTag = { method: 'get' | 'post' | 'patch', operationalId: string, summary: string, path: string }
 type ApiTags = Record<string, ApiTag[]>
 type EndPints = { [key: string]: HttpRequest }
+type ServerObj = {[key: string]: Server}
 
 
 interface OpenAPI {
@@ -22,9 +23,10 @@ interface Info {
 }
 
 interface Server {
+    key: string;
     url: string;
-    description: string;
-    variables: Variables;
+    description?: string;
+    variables?: Variables;
 }
 
 interface Variables {

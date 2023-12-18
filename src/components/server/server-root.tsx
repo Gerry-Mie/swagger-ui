@@ -23,20 +23,23 @@ const ServerRoot = () => {
         })
     }
     const updateServer = (v: string | null) => {
-        setStore({server: v || ''})
+        const ns = v ? servers[v] : null
+        setStore({server: ns})
 
         setSearchParams(pre => {
-            pre.set('server', v || '')
+            pre.set('server', ns ? ns.url : '')
             return pre
         })
     }
 
     useEffect(() => {
-        // todo
+
+        const urlSer = searchParams.get('server') || ''
+
         setStore({
             yamlUrl: searchParams.get('yaml') || '',
             key: Date.now(),
-            server: searchParams.get('server')|| ''
+            server: {url: urlSer, key: '00'}
         })
     }, [])
 
@@ -59,24 +62,25 @@ const ServerRoot = () => {
                         </Button>
                     </Flex>
                     {
-                        servers?.length ? (
+                        Object.keys(servers)?.length ? (
                             <Select
-                                value={server || servers[0].url || ''}
+                                value={server?.key}
                                 onChange={updateServer}
-                                data={servers.map((s: Server) => ({
-                                    value: s.url,
-                                    label: s.url + ' - ' + s?.description
+                                data={Object.keys(servers).map((k) => ({
+                                    value: k,
+                                    label: servers[k]?.description || servers[k].url
                                 }))}
                                 label='Server'
                                 placeholder='http://localhost:8080'/>
                         ) : (
                             <TextInput
-                                value={server || ''}
-                                onChange={(e) => updateServer(e.target.value)}
+                                value={server?.url || ''}
+                                onChange={(e) => setStore({server: {url: e.target.value, key: '00'}})}
                                 label='Server URL'
                                 placeholder='http://localhost:8080'/>
                         )
                     }
+
                 </Stack>
 
             </Modal>
