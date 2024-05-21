@@ -30,7 +30,7 @@ const EndpointRoot = () => {
         <Flex direction='column' h='100%'>
             <Stack>
                 <Group py={5} px='lg' justify={'space-between'} bg='var(--mantine-color-gray-light-hover)'>
-                    <Title order={4}>{selected.summary || selected.path?.split('/').pop()}</Title>
+                    <Title order={6}>{selected.summary || selected.path?.split('/').pop()}</Title>
                     <Text c='dimmed'>{`${server?.description+' - ' || ''}${server?.url || ''}`}</Text>
                 </Group>
                 <Group pt={5} px='md' gap={6}>
@@ -47,7 +47,7 @@ const EndpointRoot = () => {
             </Stack>
             <Split
                 className={styles.spitCustomStyle}
-                sizes={[25, 75]}
+                sizes={[70, 30]}
                 minSize={[0, 30]}
                 expandToMin={false}
                 gutterSize={4}
@@ -57,7 +57,7 @@ const EndpointRoot = () => {
                 direction="vertical"
                 cursor="row-resize"
             >
-                <Tabs defaultValue="settings" style={{overflow: 'hidden'}} px='md'>
+                <Tabs defaultValue="description" style={{overflow: 'hidden'}} px='md'>
                     <Tabs.List className={styles.tabList}>
                         <Tabs.Tab className={styles.tabTabs} value="description">Description</Tabs.Tab>
                         <Tabs.Tab className={styles.tabTabs} value="header">Header</Tabs.Tab>

@@ -1,5 +1,6 @@
 import {create} from 'zustand'
 import {devtools} from 'zustand/middleware'
+import {User} from 'firebase/auth'
 
 interface StoreValues {
     key: number,
@@ -11,7 +12,9 @@ interface StoreValues {
     server: Server | null;
     yamlUrl?: string;
     servers: ServerObj
-    bearerToken: string
+    bearerToken: string,
+    user: User | null,
+    project: Project | null
 }
 
 interface StoreSetters {
@@ -24,6 +27,8 @@ type StoreInterface = StoreValues & StoreSetters
 
 export const useStore = create<StoreInterface>()(
     devtools((set, get) => ({
+        user: null,
+        project: null,
         key: 0,
         loading: true,
         title: 'Swagger UI',

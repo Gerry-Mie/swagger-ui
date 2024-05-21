@@ -11,6 +11,7 @@ const ServerRoot = () => {
     const servers = useStore(state => state.servers)
     const server = useStore(state => state.server)
     const yamlUrl = useStore(state => state.yamlUrl)
+    const project = useStore(state => state.project)
     const loading = useStore(state => state.loading)
     const [searchParams, setSearchParams] = useSearchParams();
 
@@ -43,24 +44,48 @@ const ServerRoot = () => {
         })
     }, [])
 
+    useEffect(()=>{
+        if (project&&(!yamlUrl||!project.yamlUrls.includes(yamlUrl)||!server)) {
+            toggleModal(true)
+        }
+    },[project])
+
     return (
         <>
             <ActionIcon variant='subtle' radius='xl' onClick={() => toggleModal()}>
                 <IconServer size={20}/>
             </ActionIcon>
             <Modal size='lg' title='Server' opened={modalState} onClose={toggleModal}>
-                <Stack>
-                    <Flex gap={10} align='flex-end'>
-                        <TextInput
-                            w='100%'
-                            label='Yaml URL'
-                            value={yamlUrl}
-                            onChange={updateYaml}/>
 
-                        <Button onClick={() => setStore({key: Date.now(), loading: true})} loading={loading}>
-                            <IconSend/>
-                        </Button>
-                    </Flex>
+
+                <Stack>
+                    {project
+                        ? (<Select
+                            label='Yaml'
+                            value={yamlUrl}
+                            data={project.yamlUrls}
+                            onChange={(v)=> {
+                                setStore({yamlUrl: v || '', key: Date.now()})
+                                setSearchParams(pre => {
+                                    pre.set('yaml', v || '')
+                                    return pre
+                                })
+                            }} />)
+                        : (
+                        <Flex gap={10} align='flex-end'>
+                            <TextInput
+                                w='100%'
+                                label='Yaml URL'
+                                value={yamlUrl}
+                                onChange={updateYaml}/>
+
+                            <Button onClick={() => setStore({key: Date.now(), loading: true})} loading={loading}>
+                                <IconSend/>
+                            </Button>
+                        </Flex>
+                        )
+                    }
+
                     {
                         Object.keys(servers)?.length ? (
                             <Select

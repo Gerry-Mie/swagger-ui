@@ -2,6 +2,7 @@ import {Tabs} from "@mantine/core";
 import styles from '../../app.module.css'
 import CodeViewer from "../code-viewer.tsx";
 import {useSearchParams} from "react-router-dom";
+import {useEffect, useState} from "react";
 
 interface Props {
     responses: ParsedResponse[]
@@ -10,11 +11,15 @@ interface Props {
 const ResponsesTab = ({responses}: Props) => {
     const [searchParams] = useSearchParams();
     const selectedKey = searchParams.get('selected')
-    if (!responses) return <div/>
-    return (
-        <Tabs.Panel value='responses' pt={20} h='calc(100% - 60px)'>
+    const [selectedTab, setSelectedTab] = useState<string|null>('')
 
-            <Tabs key={selectedKey} h='100%' defaultValue={responses[0]?.status}>
+    useEffect(()=>setSelectedTab(responses.length?responses[0].status:''),[responses])
+
+    if (!responses) return <div/>
+
+    return (
+        <Tabs.Panel key={selectedKey} value='responses' pt={20} h='calc(100% - 60px)'>
+            <Tabs key={selectedKey} h='100%' value={selectedTab} onChange={setSelectedTab}>
                 <Tabs.List className={styles.tabList}>
                     {
                         responses.map((response, index) => (

@@ -4,6 +4,8 @@ import ColorScheme from "../color-scheme.tsx";
 import {useStore} from "../../store.tsx";
 import AuthRoot from "../auth/auth-root.tsx";
 import ServerRoot from "../server/server-root.tsx";
+import ProjectRoot from "../project/project-root.tsx";
+import UserRoot from "../user/user-root.tsx";
 
 interface Props {
     opened: boolean,
@@ -14,6 +16,7 @@ const AppHeader = ({opened, toggle}: Props) => {
     const title = useStore(state => state.title)
     const loading = useStore(state => state.loading)
     const setStore = useStore(state => state.setStore)
+    const user = useStore(state => state.user)
 
     return (
         <Group px='20' h='100%' justify={'space-between'}>
@@ -30,7 +33,11 @@ const AppHeader = ({opened, toggle}: Props) => {
 
             {/*right side*/}
             <Group>
-               <ServerRoot/>
+                {!!user && (
+                    <ProjectRoot/>
+                )}
+
+                <ServerRoot/>
                 <AuthRoot/>
                 <ActionIcon
                     className={loading ? 'spin-refresher' : ''}
@@ -39,6 +46,7 @@ const AppHeader = ({opened, toggle}: Props) => {
                     <IconRefresh size={20}/>
                 </ActionIcon>
                 <ColorScheme/>
+                <UserRoot/>
             </Group>
         </Group>
     );

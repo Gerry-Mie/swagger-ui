@@ -2,6 +2,11 @@ type ApiTag = { method: 'get' | 'post' | 'patch', operationalId: string, summary
 type ApiTags = Record<string, ApiTag[]>
 type EndPints = { [key: string]: HttpRequest }
 type ServerObj = {[key: string]: Server}
+interface Project {
+    id: string
+    name: string
+    yamlUrls: string[]
+}
 
 
 interface OpenAPI {

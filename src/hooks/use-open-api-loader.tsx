@@ -11,7 +11,7 @@ const useOpenApiLoader = () => {
 
     useEffect(() => {
         async function loadYaml() {
-
+            setStore({loading: true})
             try {
                 const text = await fetch(yamlUrl || '').then(res => res.text())
                 const obj = yaml.load(text) as OpenAPI
