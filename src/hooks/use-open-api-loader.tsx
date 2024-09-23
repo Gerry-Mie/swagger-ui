@@ -16,7 +16,6 @@ const useOpenApiLoader = () => {
                 const text = await fetch(yamlUrl || '').then(res => res.text())
                 const obj = yaml.load(text) as OpenAPI
 
-                // console.log(obj)
                 const openApi = new OpenApi(obj)
 
                 const parsed = openApi.parse();

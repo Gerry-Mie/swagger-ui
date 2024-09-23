@@ -24,9 +24,9 @@ const AppNav = () => {
     }
 
     return (
-        <ScrollArea>
+        <ScrollArea maw={'100%'} scrollbars={'y'}>
             {Object.keys(tags).map((tag, index) => (
-                <NavLink key={index} label={tag}>
+                <NavLink key={index} label={tag} >
                     {tags[tag].map((method) => {
                         return (
                             <NavLink
