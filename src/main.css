@@ -39,3 +39,9 @@
     font-size: 14px;
     margin-right: 10px;
 }
+
+
+.search-item:hover {
+    background-color: var(--mantine-color-gray-light-hover);
+}
+

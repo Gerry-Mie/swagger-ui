@@ -54,8 +54,14 @@ const Search = () => {
             <Modal opened={isOpen} onClose={closeModal} title={'Search'} size={'xl'}>
                 <TextInput ref={searchInputRef} value={searchValue} onChange={(e) => setSearchValue(e.currentTarget.value)}/>
                 {searchResults.map(res => (
-                    <Paper key={res.operationalId} mt={10} radius={0} onClick={updateSelected(res.operationalId)}
-                           style={{cursor: 'pointer'}}>
+                    <Paper
+                        className={'search-item'}
+                        key={res.operationalId}
+                        mt={10}
+                        p={10}
+                        radius={10}
+                        onClick={updateSelected(res.operationalId)}
+                        style={{cursor: 'pointer'}}>
                         <Text size={'lg'}>{res.summary}</Text>
                         <Group gap={5}>
                             <Text size={'sm'} c={methodColors[res.method]}>{res.method?.toUpperCase()}</Text>
