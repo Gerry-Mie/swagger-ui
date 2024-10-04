@@ -6,6 +6,7 @@ import AuthRoot from "../auth/auth-root.tsx";
 import ServerRoot from "../server/server-root.tsx";
 import ProjectRoot from "../project/project-root.tsx";
 import UserRoot from "../user/user-root.tsx";
+import Search from "../search";
 
 interface Props {
     opened: boolean,
@@ -30,6 +31,8 @@ const AppHeader = ({opened, toggle}: Props) => {
                 />
                 <div>{title}</div>
             </Group>
+
+            <Search/>
 
             {/*right side*/}
             <Group>
