@@ -31,7 +31,7 @@ const EndpointRoot = () => {
             <Stack>
                 <Group py={5} px='lg' justify={'space-between'} bg='var(--mantine-color-gray-light-hover)'>
                     <Title order={6}>{selected.summary || selected.path?.split('/').pop()}</Title>
-                    <Text c='dimmed'>{`${server?.description+' - ' || ''}${server?.url || ''}`}</Text>
+                    <Text c='dimmed'>{`${server?.description? server.description+' - ' : ''}${server?.url || ''}`}</Text>
                 </Group>
                 <Group pt={5} px='md' gap={6}>
                     <Button
