@@ -40,7 +40,7 @@ const Search = () => {
     return (
         <>
             <SearchButton onClick={()=>setIsOpen(true)}/>
-            <Modal opened={isOpen} onClose={closeModal} title={'Search'}>
+            <Modal opened={isOpen} onClose={closeModal} title={'Search'} size={'xl'}>
                 <TextInput value={searchValue} onChange={(e)=>setSearchValue(e.currentTarget.value)} />
                 {searchResults.map(res=> (
                     <Paper key={res.operationalId} mt={10}  radius={0} onClick={updateSelected(res.operationalId)} style={{cursor: 'pointer'}}>
